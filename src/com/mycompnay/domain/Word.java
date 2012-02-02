@@ -10,4 +10,32 @@ package com.mycompnay.domain;
  */
 public class Word {
     
+    private int id;
+    private int noOfOcc;
+    private String word;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getWord() {
+        return word;
+    }
+
+    public void setWord(String word) {
+        this.word = word;
+    }
+
+    public int getNoOfOcc() {
+        return noOfOcc;
+    }
+
+    public void setNoOfOcc(int noOfOcc) {
+        this.noOfOcc = noOfOcc;
+    }
+    
 }

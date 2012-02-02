@@ -5,8 +5,9 @@
 package com.mycompnay.utils;
 
 import com.mycompnay.domain.Word;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -14,14 +15,31 @@ import java.util.List;
  */
 public class WordProcessor {
 
-    private static List<Word> wordList = new ArrayList<Word>();
-
-    static void getTopWordsAndCount(String bookLine) {
+    static List<Word> getTopWordsAndCount(String bookLine, List<Word> wordList) {
         int index = 0;
-        while (index >= 0 && index < bookLine.length()) {
-            int spaceIndex = bookLine.indexOf(" ", index);
-            index = spaceIndex + 1;
+        int spaceIndex = 0;
+
+        Pattern p = Pattern.compile("\\w+");
+        Matcher m = p.matcher(bookLine);
+        while (m.find()) {
+            String w = m.group();
+            Word word = new Word();
+            int number = word.getNoOfOcc();
+            word.setNoOfOcc(number++);
+            setWordCount(word.getWord(),wordList);
+            word.setWord(w);
+            wordList.add(word);
         }
 
+        return wordList;
+
+    }
+
+    private static void setWordCount(String word, List<Word> wordList) {
+        for (Word aWord : wordList) {
+            if(aWord.getWord().equalsIgnoreCase(word)) {
+                aWord.setNoOfOcc(aWord.getNoOfOcc()+1);
+            }
+        }
     }
 }
