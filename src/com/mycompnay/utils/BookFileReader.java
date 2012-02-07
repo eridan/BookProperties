@@ -7,9 +7,7 @@ package com.mycompnay.utils;
 import com.mycompnay.domain.Word;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  *
@@ -23,6 +21,8 @@ public class BookFileReader {
     public static String readBookFromFile(String filename) throws FileNotFoundException {
 
         List<Word> wordList = new ArrayList<Word>();
+        HashMap<Integer,Word> topWordMap = new HashMap<Integer, Word>();
+        
         StringBuilder book = new StringBuilder();
         Scanner scanner = new Scanner(new FileInputStream(filename), encoding);
         try {
@@ -40,6 +40,16 @@ public class BookFileReader {
             System.out.print(word.getWord()+" "+"("+word.getNoOfOcc()+") ");
         }
         System.out.print("]");
+        
+        System.out.println("\n-------------------------------\n");
+        System.out.print("Top 100 words are: ");
+        topWordMap = WordProcessor.getTopWords(wordList);
+        Set s = (topWordMap).entrySet();
+        Iterator it = s.iterator();
+        while(it.hasNext()){
+            System.out.print("[ "+(String)it.next()+" ");
+        }
+        System.out.print("]\n-------------------------------\n");
 
         return book.toString();
     }
