@@ -38,4 +38,15 @@ public class Word {
         this.noOfOcc = noOfOcc;
     }
     
+    @Override
+    public boolean equals(Object aWord) {
+        Word w = (Word) aWord;
+        return getWord().equals(w.getWord());
+    }
+    
+    @Override
+    public int hashCode() {
+        return word.hashCode();
+    }
+    
 }
