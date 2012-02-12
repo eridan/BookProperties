@@ -10,6 +10,12 @@ public class BookStatistics {
 
     public static void main(String[] args) {
         
+        BookStatistics inst = new BookStatistics();
+        inst.go();
+    }
+    
+    private void go() {
+        
         long startTime = Calendar.getInstance().getTimeInMillis();
         String book = "";
         try {
